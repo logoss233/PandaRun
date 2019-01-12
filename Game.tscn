@@ -1,0 +1,214 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Game.gd" type="Script" id=1]
+[ext_resource path="res://素材/Game BG Image Layers/Backgroun MOcup.jpg" type="Texture" id=2]
+[ext_resource path="res://Objcect/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objcect/coin.tscn" type="PackedScene" id=4]
+[ext_resource path="res://font/NotoSansHans-Medium.otf" type="DynamicFontData" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+extents = Vector2( 305.486, 41.3368 )
+
+[sub_resource type="DynamicFont" id=2]
+
+size = 30
+outline_size = 5
+outline_color = Color( 0.0117647, 0.0117647, 0.0117647, 1 )
+font_data = ExtResource( 5 )
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="bgLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Backgroun MOcup" type="Sprite" parent="bgLayer"]
+position = Vector2( 644.573, 323.213 )
+scale = Vector2( 1.26443, 1.26253 )
+texture = ExtResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+editor/display_folded = true
+position = Vector2( 514.256, 108.224 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2( 200, 0 )
+current = true
+limit_top = 0
+limit_bottom = 640
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+
+[node name="item" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="coin" parent="item" instance=ExtResource( 4 )]
+position = Vector2( 1229.88, 297.74 )
+
+[node name="coin2" parent="item" instance=ExtResource( 4 )]
+position = Vector2( 1338.94, 297.74 )
+
+[node name="coin3" parent="item" instance=ExtResource( 4 )]
+position = Vector2( 1445.73, 293.196 )
+
+[node name="coin4" parent="item" instance=ExtResource( 4 )]
+position = Vector2( 1757, 202.313 )
+
+[node name="coin5" parent="item" instance=ExtResource( 4 )]
+position = Vector2( 1875.15, 200.041 )
+
+[node name="coin6" parent="item" instance=ExtResource( 4 )]
+position = Vector2( 2045.56, 354.542 )
+
+[node name="coin7" parent="item" instance=ExtResource( 4 )]
+position = Vector2( 2197.79, 256.842 )
+
+[node name="coin8" parent="item" instance=ExtResource( 4 )]
+position = Vector2( 2350.01, 163.687 )
+
+[node name="coin9" parent="item" instance=ExtResource( 4 )]
+position = Vector2( 2536.32, 165.959 )
+
+[node name="floor" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="floor"]
+editor/display_folded = true
+position = Vector2( 521.129, 470.779 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor/StaticBody2D"]
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="ColorRect" type="ColorRect" parent="floor/StaticBody2D"]
+margin_left = -304.0
+margin_top = -41.0
+margin_right = 302.0
+margin_bottom = 40.0
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="floor"]
+editor/display_folded = true
+position = Vector2( 1268.84, 392.735 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor/StaticBody2D2"]
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="ColorRect" type="ColorRect" parent="floor/StaticBody2D2"]
+margin_left = -304.0
+margin_top = -41.0
+margin_right = 302.0
+margin_bottom = 40.0
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="floor"]
+editor/display_folded = true
+position = Vector2( 2006.47, 508.542 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor/StaticBody2D3"]
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="ColorRect" type="ColorRect" parent="floor/StaticBody2D3"]
+margin_left = -304.0
+margin_top = -41.0
+margin_right = 302.0
+margin_bottom = 40.0
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="floor"]
+editor/display_folded = true
+position = Vector2( 2685.8, 379.596 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor/StaticBody2D4"]
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="ColorRect" type="ColorRect" parent="floor/StaticBody2D4"]
+margin_left = -304.0
+margin_top = -41.0
+margin_right = 302.0
+margin_bottom = 40.0
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="floor"]
+editor/display_folded = true
+position = Vector2( 3383.17, 270.806 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor/StaticBody2D5"]
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="ColorRect" type="ColorRect" parent="floor/StaticBody2D5"]
+margin_left = -304.0
+margin_top = -41.0
+margin_right = 302.0
+margin_bottom = 40.0
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="floor"]
+editor/display_folded = true
+position = Vector2( 4111.24, 485.598 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor/StaticBody2D6"]
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="ColorRect" type="ColorRect" parent="floor/StaticBody2D6"]
+margin_left = -304.0
+margin_top = -41.0
+margin_right = 302.0
+margin_bottom = 40.0
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="floor"]
+editor/display_folded = true
+position = Vector2( 4839.3, 368.438 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor/StaticBody2D7"]
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="ColorRect" type="ColorRect" parent="floor/StaticBody2D7"]
+margin_left = -304.0
+margin_top = -41.0
+margin_right = 302.0
+margin_bottom = 40.0
+
+[node name="uiLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="uiLayer"]
+margin_left = 29.0
+margin_top = 9.0
+margin_right = 100.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 2 )
+text = "分数:"
+
+[node name="scoreLabel" type="Label" parent="uiLayer"]
+margin_left = 117.0
+margin_top = 9.0
+margin_right = 188.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+
