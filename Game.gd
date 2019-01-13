@@ -27,6 +27,7 @@ onready var bg=$BG
 onready var floorPlace=$floorPlace
 func _ready():
 	Global.game=self
+	
 	start()
 	pass 
 

@@ -2,9 +2,10 @@ extends KinematicBody2D
 class_name Player
 
 var game 
-var gravity=900
+var gravity=1100
 var velocity=Vector2()
 var runSpeed=500
+var jumpSpeed=600
 
 var state=""  # normal slide die
 #slide 属性
@@ -86,6 +87,7 @@ onready var slideShape=$Area2D/CollisionShape2D
 func _ready():
 	start()
 	
+	
 func start():
 	game=Global.game
 	set_state("normal")
@@ -100,7 +102,7 @@ func _physics_process(delta):
 	match state:
 		"normal":
 			if is_on_floor() && Input.is_action_just_pressed("jump"):
-				velocity.y=-500
+				velocity.y=-jumpSpeed
 			
 			slide_cd_timer-=delta
 			if slide_cd_timer<=0 && is_on_floor() && Input.is_action_just_pressed("down"):
@@ -111,7 +113,7 @@ func _physics_process(delta):
 			if slide_timer<=0:
 				set_state("normal")
 			if is_on_floor() && Input.is_action_just_pressed("jump"):
-				velocity.y=-500
+				velocity.y=-jumpSpeed
 				set_state("normal")
 			pass
 		"die":
