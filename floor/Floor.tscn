@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://floor/Floor.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+extents = Vector2( 305.486, 41.3368 )
+
+[node name="Floor" type="StaticBody2D"]
+position = Vector2( 521.129, 470.779 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -304.0
+margin_top = -41.0
+margin_right = 302.0
+margin_bottom = 40.0
+
+[node name="leftPos" type="Position2D" parent="."]
+position = Vector2( -301.943, -42.8564 )
+
+[node name="rightPos" type="Position2D" parent="."]
+position = Vector2( 303.891, -42.8564 )
+
