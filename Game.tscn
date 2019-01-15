@@ -1,23 +1,25 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
-[ext_resource path="res://Objcect/BG.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Objcect/Cam.gd" type="Script" id=3]
+[ext_resource path="res://object/BG.tscn" type="PackedScene" id=2]
+[ext_resource path="res://object/Cam.gd" type="Script" id=3]
 [ext_resource path="res://floor/Floor.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Objcect/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://object/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://font/NotoSansHans-Medium.otf" type="DynamicFontData" id=6]
-[ext_resource path="res://Objcect/coin.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Objcect/Shield.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Objcect/Stab.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Objcect/Magnent.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Objcect/Ball1.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Objcect/Ball2.tscn" type="PackedScene" id=12]
+[ext_resource path="res://object/eatItem/coin.tscn" type="PackedScene" id=7]
+[ext_resource path="res://object/eatItem/Shield.tscn" type="PackedScene" id=8]
+[ext_resource path="res://object/damageItem/Stab.tscn" type="PackedScene" id=9]
+[ext_resource path="res://object/eatItem/Magnent.tscn" type="PackedScene" id=10]
+[ext_resource path="res://object/damageItem/Ball1.tscn" type="PackedScene" id=11]
+[ext_resource path="res://object/damageItem/Ball2.tscn" type="PackedScene" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 
 size = 30
 outline_size = 5
 outline_color = Color( 0.0117647, 0.0117647, 0.0117647, 1 )
+use_mipmaps = false
+use_filter = false
 font_data = ExtResource( 6 )
 
 [node name="Game" type="Node2D"]
@@ -45,6 +47,26 @@ drag_margin_bottom = 0.0
 
 [node name="Floor" parent="floorPlace" instance=ExtResource( 4 )]
 position = Vector2( 1009.69, 483.733 )
+scale = Vector2( 3.1, 1 )
+
+[node name="Floor2" parent="floorPlace" instance=ExtResource( 4 )]
+position = Vector2( 1577.55, 405.234 )
+scale = Vector2( 3.1, 1 )
+
+[node name="Floor3" parent="floorPlace" instance=ExtResource( 4 )]
+position = Vector2( 1577.55, 323.396 )
+scale = Vector2( 3.1, 1 )
+
+[node name="Floor4" parent="floorPlace" instance=ExtResource( 4 )]
+position = Vector2( 1575.22, 241.751 )
+scale = Vector2( 3.1, 1 )
+
+[node name="Floor5" parent="floorPlace" instance=ExtResource( 4 )]
+position = Vector2( 1577.55, 160.107 )
+scale = Vector2( 3.1, 1 )
+
+[node name="Floor6" parent="floorPlace" instance=ExtResource( 4 )]
+position = Vector2( 1577.55, 160.107 )
 scale = Vector2( 3.1, 1 )
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
@@ -133,14 +155,14 @@ position = Vector2( 1884.66, 100.036 )
 position = Vector2( 1546.98, 370.178 )
 
 [node name="Stab" parent="." instance=ExtResource( 9 )]
-position = Vector2( 1185.81, 405.414 )
+position = Vector2( 730, 600 )
 
 [node name="Magnent" parent="." instance=ExtResource( 10 )]
-position = Vector2( 971.794, 314.553 )
+position = Vector2( 880, 323.396 )
 
 [node name="Ball1" parent="." instance=ExtResource( 11 )]
-position = Vector2( 846.413, 314.861 )
+position = Vector2( 780, 323.396 )
 
 [node name="Ball2" parent="." instance=ExtResource( 12 )]
-position = Vector2( 735.376, 320.413 )
+position = Vector2( 680, 323.869 )
 
