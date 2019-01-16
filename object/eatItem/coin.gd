@@ -28,6 +28,8 @@ func eat(area):
 	
 	
 func _physics_process(delta):
+	if Global.game==null:
+		return
 	var player=Global.game.player as Player
 	if player==null:
 		return 

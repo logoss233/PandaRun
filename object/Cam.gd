@@ -16,6 +16,7 @@ func set_distance(value):
 	
 
 func start(game,player):
+	Global.cam=self
 	self.game=game
 	self.player=player
 	
