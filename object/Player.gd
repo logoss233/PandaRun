@@ -2,7 +2,7 @@ extends KinematicBody2D
 class_name Player
 
 var game 
-var gravity=1100
+var gravity=1400
 var velocity=Vector2()
 var runSpeed=500
 var jumpSpeed=600

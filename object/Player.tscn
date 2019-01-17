@@ -10,14 +10,14 @@
 [ext_resource path="res://image/panda/Panda-Idle5.png" type="Texture" id=8]
 [ext_resource path="res://image/panda/Panda-Idle6.png" type="Texture" id=9]
 [ext_resource path="res://image/panda/Panda-Idle7.png" type="Texture" id=10]
-[ext_resource path="res://image/panda/Panda- Jump Down.png" type="Texture" id=11]
-[ext_resource path="res://image/panda/Panda- Jump Up.png" type="Texture" id=12]
-[ext_resource path="res://image/panda/Panda-Run0.png" type="Texture" id=13]
-[ext_resource path="res://image/panda/Panda-Run1.png" type="Texture" id=14]
-[ext_resource path="res://image/panda/Panda-Run2.png" type="Texture" id=15]
-[ext_resource path="res://image/panda/Panda-Run3.png" type="Texture" id=16]
-[ext_resource path="res://image/panda/Panda-Run4.png" type="Texture" id=17]
-[ext_resource path="res://image/panda/Panda-Run5.png" type="Texture" id=18]
+[ext_resource path="res://image/panda/Panda-Run0.png" type="Texture" id=11]
+[ext_resource path="res://image/panda/Panda-Run1.png" type="Texture" id=12]
+[ext_resource path="res://image/panda/Panda-Run2.png" type="Texture" id=13]
+[ext_resource path="res://image/panda/Panda-Run3.png" type="Texture" id=14]
+[ext_resource path="res://image/panda/Panda-Run4.png" type="Texture" id=15]
+[ext_resource path="res://image/panda/Panda-Run5.png" type="Texture" id=16]
+[ext_resource path="res://image/panda/Panda- Jump Up.png" type="Texture" id=17]
+[ext_resource path="res://image/panda/Panda- Jump Down.png" type="Texture" id=18]
 [ext_resource path="res://image/powerUps/Shield powerup0001.png" type="Texture" id=19]
 [ext_resource path="res://image/powerUps/Shield powerup0002.png" type="Texture" id=20]
 [ext_resource path="res://image/powerUps/Shield powerup0003.png" type="Texture" id=21]
@@ -28,8 +28,6 @@
 [ext_resource path="res://image/powerUps/Manetpowerups003.png" type="Texture" id=26]
 [ext_resource path="res://image/powerUps/Manetpowerups004.png" type="Texture" id=27]
 [ext_resource path="res://image/powerUps/Manetpowerups005.png" type="Texture" id=28]
-
-
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -44,20 +42,20 @@ animations = [ {
 "name": "idle",
 "speed": 8.0
 }, {
-"frames": [ ExtResource( 11 ) ],
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
 "loop": true,
-"name": "jumpDown",
-"speed": 5.0
+"name": "run",
+"speed": 8.0
 }, {
-"frames": [ ExtResource( 12 ) ],
+"frames": [ ExtResource( 17 ) ],
 "loop": true,
 "name": "jumpUp",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
+"frames": [ ExtResource( 18 ) ],
 "loop": true,
-"name": "run",
-"speed": 8.0
+"name": "jumpDown",
+"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -85,7 +83,7 @@ animations = [ {
 
 [sub_resource type="CircleShape2D" id=5]
 
-radius = 36.213
+radius = 30.0
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 0
@@ -106,7 +104,7 @@ scale = Vector2( 2.56, 2.56 )
 
 [node name="shieldAni" type="AnimatedSprite" parent="shieldAni"]
 frames = SubResource( 3 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="magnentAni" type="AnimatedSprite" parent="."]
@@ -114,7 +112,6 @@ visible = false
 modulate = Color( 1, 1, 1, 0.368627 )
 position = Vector2( 0, -90.2502 )
 frames = SubResource( 4 )
-frame = 4
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -125,6 +122,6 @@ collision_mask = 12
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 0, 27.2003 )
+position = Vector2( 0.540359, 32.0635 )
 shape = SubResource( 5 )
 

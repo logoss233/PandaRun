@@ -12,7 +12,7 @@ func set_distance(value):
 	distanceLabel.text=String(distance)
 
 #地板最右的位置
-var floorRight=Vector2()
+var floorRight=0
 
 
 var tscn_floor=preload("res://floor/Floor.tscn")
@@ -25,7 +25,9 @@ onready var magnentLabel=$uiLayer/magnentLabel
 onready var shieldLabel=$uiLayer/shieldLabel
 onready var bg=$BG
 onready var floorPlace=$floorPlace
+onready var tileParser=$TileParser
 func _ready():
+	randomize()
 	Global.game=self
 	
 	start()
@@ -37,23 +39,27 @@ func start():
 	player.start()
 	cam.start(self,player)
 	bg.start(cam)
+	tileParser.start(floorPlace)
 	
-	#获取第一块地板的位置
-	floorRight=$floorPlace/Floor.get_rightPos()
+	
+	createFloor(0)
 	
 	
 	pass
 
 func _physics_process(delta):
-	if cam.get_camRight()>floorRight.x:
-		#生成新的地板
-		var fl=tscn_floor.instance()
-		var y=rand_range(floorRight.y-160,580)
-		var x=rand_range(floorRight.x+100,floorRight.x+300)
-		fl.set_leftPos(Vector2(x,y))
-		floorPlace.add_child(fl)
-		floorRight=fl.get_rightPos()
-		
-		pass
+	if cam.get_camRight()>floorRight-100:
+		var lv=floor(distance/5000)+1
+		createFloor(lv)
+
+#生成新的地板,根据等级
+func createFloor(lv):
+	if lv>GameData.mapLab.size()-1:
+		lv=GameData.mapLab.size()-1
+	var mapList=GameData.mapLab[lv]
+	
+	var index=floor(rand_range(0,mapList.size()))
+	var mapData=mapList[index]
+	floorRight=tileParser.parse(mapData,floorRight)
 	
 	pass

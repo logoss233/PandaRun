@@ -18,27 +18,22 @@ func _ready():
 	for i in range(8):
 		var path="res://object/tile/tile"+String(i+1)+".tscn"
 		tscn_tiles.append(load(path))
-	start()
 
-func start():
-	itemPlace=self
-	parse(0)
+func start(itemPlace):
+	self.itemPlace=itemPlace
 	pass
 
-
-func parse(startX):
+#解析地图数据，返回floorRight
+func parse(jsonObj,startX):
 	hasMagnent=false
 	hasShield=false
 	self.startX=startX
 	
-	var file=File.new()
-	if !file.file_exists("res://map/1.json"):
-		return
-	file.open("res://map/1.json",File.READ)
-	var txt=file.get_as_text()
-	var jsonObj=parse_json(txt)
 	for layer in jsonObj.layers:
 		parseLayer(layer)
+		
+	var floorRight=startX+jsonObj.width*64
+	return floorRight
 	
 func parseLayer(layer):
 	if layer.type=="tilelayer":
@@ -75,25 +70,29 @@ func parseObjectLayer(layer):
 		item.position=Vector2(x,y)
 
 func chooseTscn(id):
-	#根据d来拿出资源
+	#根据id来拿出资源
 	var tscn
 	if id<=8:
+		#普通砖块有一定概率变成带叶子的砖块
+		if int(id)%2==1 && randf()<0.2:
+			id+=1
 		tscn=tscn_tiles[id-1]
 	elif id==9:
 		#金币  有2%的概率变成磁铁，2%的概率变成盾牌
 		var r=randf()
-		if r<0.02 && !hasMagnent:
+		if r<0.005 && !hasMagnent:
 			tscn=tscn_magnent
 			hasMagnent=true
-		elif r<0.04 && !hasShield:
+		elif r<0.005 && !hasShield:
 			tscn=tscn_shield
 			hasShield=true
 		else:
 			tscn=tscn_coin
-	elif id==10:
+	elif id==11:
 		#刺
 		tscn=tscn_stab
-	elif id==11:
+	elif id==10:
+		#球
 		if randi()<0.5:
 			tscn=tscn_ball1
 		else:
