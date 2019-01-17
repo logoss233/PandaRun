@@ -46,7 +46,8 @@ var shield_time=5
 func set_state(value):
 	match state:
 		"normal":
-			normalShape.disabled=true
+			normalShape.set_deferred("disabled",true)
+			#normalShape.disabled=true
 			pass
 		"slide":
 			slide_cd_timer=slide_cd
@@ -56,7 +57,8 @@ func set_state(value):
 	state=value
 	match state:
 		"normal":
-			normalShape.disabled=false
+			normalShape.set_deferred("disabled",false)
+			#normalShape.disabled=false
 			pass
 		"slide":
 			slide_timer=slide_time
