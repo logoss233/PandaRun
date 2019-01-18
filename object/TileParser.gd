@@ -58,6 +58,7 @@ func parseTileLayer(layer):
 		itemPlace.add_child(tile)
 		tile.position=Vector2(startX+xx*64+32,yy*64+32)
 
+
 func parseObjectLayer(layer):
 	for obj in layer.objects:
 		var tscn=chooseTscn(obj.gid)
@@ -68,6 +69,7 @@ func parseObjectLayer(layer):
 		var x=startX+obj.x+0.5*obj.width
 		var y=obj.y-0.5*obj.height
 		item.position=Vector2(x,y)
+
 
 func chooseTscn(id):
 	#根据id来拿出资源
@@ -93,7 +95,7 @@ func chooseTscn(id):
 		tscn=tscn_stab
 	elif id==10:
 		#球
-		if randi()<0.5:
+		if randf()<0.5:
 			tscn=tscn_ball1
 		else:
 			tscn=tscn_ball2

@@ -1,5 +1,6 @@
 extends KinematicBody2D
 class_name Player
+signal die
 
 var game 
 var gravity=1400
@@ -8,6 +9,8 @@ var runSpeed=500
 var jumpSpeed=600
 
 var state=""  # normal slide die
+var isRun=false
+
 #slide 属性
 var slide_timer=0
 var slide_time=0.7
@@ -25,7 +28,7 @@ func set_isMagnent(value):
 		false:
 			magnentAni.visible=false
 var magnent_timer=0
-var magnent_time=5
+var magnent_time=8
 #盾
 var isShield=false setget set_isShield
 func set_isShield(value):
@@ -37,7 +40,7 @@ func set_isShield(value):
 		false:
 			shieldAni.visible=false
 var shield_timer=0
-var shield_time=5
+var shield_time=8
 
 
 
@@ -75,6 +78,8 @@ func set_state(value):
 			#清楚磁铁效果
 			if isMagnent:
 				set_isMagnent(false)
+			#发信号
+			emit_signal("die")
 			pass
 			
 #引用
@@ -121,9 +126,11 @@ func _physics_process(delta):
 		"die":
 			velocity.x=-300
 			
-	if Input.is_action_pressed("left"):
-		velocity.x=-runSpeed
-	elif Input.is_action_pressed("right"):
+#	if Input.is_action_pressed("left"):
+#		velocity.x=-runSpeed
+#	elif Input.is_action_pressed("right"):
+#		velocity.x=runSpeed
+	if isRun:
 		velocity.x=runSpeed
 	
 	#物理
@@ -144,7 +151,10 @@ func _physics_process(delta):
 		"slide":
 			
 			pass
-	
+	#掉落死亡
+	if state!="die":
+		if position.y>850:
+			set_state("die")
 	
 	#更新磁铁计时
 	if isMagnent:
@@ -159,7 +169,9 @@ func _physics_process(delta):
 		if shield_timer<=0:
 			set_isShield(false)
 	game.shieldLabel.text=String(shield_timer)
+	
 
+	
 
 func hit():
 	print("hit")
