@@ -11,11 +11,20 @@ var jumpSpeed=600
 var state=""  # normal slide die
 var isRun=false
 
+#实现提前几帧按下按键的效果
+var lastPressedAction="" #最后按下的动作
+var lastPressedTimer=0
+var lastPressedTime=0.15
+func setLastPressed(action):
+	lastPressedAction=action
+	lastPressedTimer=lastPressedTime
+	pass
+
+
 #slide 属性
 var slide_timer=0
 var slide_time=0.7
-var slide_cd=0.2
-var slide_cd_timer=0
+
 
 #磁铁
 var isMagnent=false setget set_isMagnent
@@ -53,7 +62,6 @@ func set_state(value):
 			#normalShape.disabled=true
 			pass
 		"slide":
-			slide_cd_timer=slide_cd
 			aniSpr.offset.y=0
 			pass
 	
@@ -89,8 +97,7 @@ onready var magnentAni=$magnentAni
 onready var normalShape=$Area2D/normalShape2
 onready var slideShape=$Area2D/CollisionShape2D
 
-
-
+#初始化
 func _ready():
 	start()
 	
@@ -100,6 +107,13 @@ func start():
 	set_state("normal")
 
 func _physics_process(delta):
+	#接受按键输入
+	if Input.is_action_just_pressed("jump"):
+		setLastPressed("jump")
+	elif Input.is_action_just_pressed("down"):
+		setLastPressed("down")
+	
+	
 	velocity.x=0
 	
 	#重力加速度
@@ -108,18 +122,19 @@ func _physics_process(delta):
 	
 	match state:
 		"normal":
-			if is_on_floor() && Input.is_action_just_pressed("jump"):
+			if is_on_floor() && lastPressedAction=="jump":
 				velocity.y=-jumpSpeed
+				lastPressedAction=""
 			
-			slide_cd_timer-=delta
-			if slide_cd_timer<=0 && is_on_floor() && Input.is_action_just_pressed("down"):
+			if is_on_floor() && lastPressedAction=="down":
 				set_state("slide")
+				lastPressedAction=""
 			pass
 		"slide":
 			slide_timer-=delta
 			if slide_timer<=0:
 				set_state("normal")
-			if is_on_floor() && Input.is_action_just_pressed("jump"):
+			if is_on_floor() && lastPressedAction=="jump":
 				velocity.y=-jumpSpeed
 				set_state("normal")
 			pass
@@ -170,11 +185,28 @@ func _physics_process(delta):
 			set_isShield(false)
 	game.shieldLabel.text=String(shield_timer)
 	
+	#更新最后按下按键
+	if lastPressedAction!="":
+		lastPressedTimer-=delta
+		if lastPressedTimer<=0:
+			lastPressedAction=""
 
-	
+
+#func _input(event):
+#	print("input",str(event))
+#	if event is InputEventAction:
+#		if event.pressed:
+#			if event.action=="jump":
+#				setLastPressed("jump")
+#				pass
+#			if event.action=="down":
+#				setLastPressed("down")
+#				pass
+#
 
 func hit():
 	print("hit")
 	if isShield:
 		return
 	set_state("die")
+

@@ -85,7 +85,7 @@ func chooseTscn(id):
 		if r<0.005 && !hasMagnent:
 			tscn=tscn_magnent
 			hasMagnent=true
-		elif r<0.005 && !hasShield:
+		elif r<0.01 && !hasShield:
 			tscn=tscn_shield
 			hasShield=true
 		else:

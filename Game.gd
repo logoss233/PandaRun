@@ -45,9 +45,11 @@ func set_state(value):
 			pass
 		"run":
 			player.isRun=true
+			MusicManager.begin()
 			pass
 		"end":
 			endUI.visible=true
+			MusicManager.end()
 			pass
 #-----------初始化------
 func _ready():

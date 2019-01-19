@@ -71,7 +71,7 @@ func _ready():
 	add_child(musicPlayer)
 	musicPlayer.connect("finished",self,"_on_music_finished")
 	
-	
+	effectVolume_set(0.5)
 	
 	
 func stopAll():#停止全部声音的播放

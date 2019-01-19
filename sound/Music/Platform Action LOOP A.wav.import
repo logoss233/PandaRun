@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Platform Action LOOP A.wav-6ba13f9299356d87104719620cfea019.sample"
+
+[deps]
+
+source_file="res://sound/Music/Platform Action LOOP A.wav"
+dest_files=[ "res://.import/Platform Action LOOP A.wav-6ba13f9299356d87104719620cfea019.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
